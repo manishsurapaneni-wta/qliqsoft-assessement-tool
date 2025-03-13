@@ -37,7 +37,7 @@ export const QuestionFooter = ({
         onClick={onNext}
         disabled={value === undefined}
         className={cn(
-          "transition-all duration-300 group",
+          "transition-all duration-300 group ml-auto",
           value === undefined ? "opacity-70" : "opacity-100"
         )}
       >
