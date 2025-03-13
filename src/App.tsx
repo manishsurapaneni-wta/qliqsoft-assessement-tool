@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Assessment from "./pages/Assessment";
 import Results from "./pages/Results";
 import Dashboard from "./pages/Dashboard";
+import FormBuilder from "./pages/FormBuilder";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/assessment" element={<Assessment />} />
           <Route path="/results" element={<Results />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/form-builder" element={<FormBuilder />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
