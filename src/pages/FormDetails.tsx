@@ -99,7 +99,7 @@ const FormDetails = () => {
           
           <div className="lg:col-span-4 space-y-6">
             {/* Quick navigation sidebar */}
-            <div className="sticky top-6">
+            <div className="sticky top-24">
               <FormQuickNav form={form} />
             </div>
           </div>
@@ -130,7 +130,7 @@ const FormQuickNav = ({ form }) => {
           <a 
             key={question.id} 
             href={`#question-${question.id}`}
-            className="block text-sm hover:text-primary truncate"
+            className="block text-sm hover:text-primary truncate border-l-2 border-transparent hover:border-primary pl-2 py-1 transition-colors"
           >
             {index + 1}. {question.text}
           </a>
