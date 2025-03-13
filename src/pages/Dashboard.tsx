@@ -1,17 +1,19 @@
 
 import { useState, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
-import { generateSampleResults, AssessmentResult } from "@/utils/scoring";
+import { generateSampleResults } from "@/utils/scoring";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import KPICardSection from "@/components/dashboard/KPICardSection";
-import ChartTabs from "@/components/dashboard/ChartTabs";
-import RecentAssessmentsTable from "@/components/dashboard/RecentAssessmentsTable";
+import FormsList from "@/components/dashboard/FormsList";
+import QuickActions from "@/components/dashboard/QuickActions";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card } from "@/components/ui/card";
 
 // Generate sample data for dashboard
 const sampleResults = generateSampleResults(30);
 
 const Dashboard = () => {
-  const [results, setResults] = useState<AssessmentResult[]>([]);
+  const [results, setResults] = useState(sampleResults);
   const [timeRange, setTimeRange] = useState("30");
   
   useEffect(() => {
@@ -41,55 +43,6 @@ const Dashboard = () => {
     moderate: filteredResults.filter(r => r.riskLevel === "moderate").length,
     high: filteredResults.filter(r => r.riskLevel === "high").length,
   };
-  
-  // Prepare time series data for charts
-  const prepareTimeSeriesData = () => {
-    const data: any[] = [];
-    const dateMap = new Map();
-    
-    // Group by date
-    filteredResults.forEach(result => {
-      const date = new Date(result.completedAt);
-      const dateStr = `${date.getMonth() + 1}/${date.getDate()}`;
-      
-      if (dateMap.has(dateStr)) {
-        const existing = dateMap.get(dateStr);
-        existing.count += 1;
-        existing.scoreSum += result.percentageScore;
-      } else {
-        dateMap.set(dateStr, {
-          date: dateStr,
-          count: 1,
-          scoreSum: result.percentageScore,
-        });
-      }
-    });
-    
-    // Convert map to array and calculate averages
-    dateMap.forEach(value => {
-      data.push({
-        date: value.date,
-        averageScore: value.scoreSum / value.count,
-        assessments: value.count,
-      });
-    });
-    
-    // Sort by date
-    return data.sort((a, b) => {
-      const [aMonth, aDay] = a.date.split('/').map(Number);
-      const [bMonth, bDay] = b.date.split('/').map(Number);
-      return aMonth === bMonth ? aDay - bDay : aMonth - bMonth;
-    });
-  };
-  
-  const timeSeriesData = prepareTimeSeriesData();
-  
-  // Prepare risk distribution data for pie chart
-  const riskDistributionData = [
-    { name: "Low Risk", value: riskLevelCounts.low, color: "#10B981" },
-    { name: "Moderate Risk", value: riskLevelCounts.moderate, color: "#F59E0B" },
-    { name: "High Risk", value: riskLevelCounts.high, color: "#EF4444" },
-  ].filter(item => item.value > 0);
 
   return (
     <div className="min-h-screen flex flex-col bg-secondary/20">
@@ -101,24 +54,105 @@ const Dashboard = () => {
           setTimeRange={setTimeRange}
         />
         
-        {/* KPI Cards */}
-        <KPICardSection 
-          filteredResults={filteredResults}
-          averageScore={averageScore}
-          timeRange={timeRange}
-        />
-        
-        {/* Charts Section */}
-        <ChartTabs 
-          timeSeriesData={timeSeriesData}
-          riskDistributionData={riskDistributionData}
-          filteredResults={filteredResults}
-          riskLevelCounts={riskLevelCounts}
-          averageScore={averageScore}
-        />
-        
-        {/* Recent Assessments */}
-        <RecentAssessmentsTable filteredResults={filteredResults} />
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+          {/* Main content area - 3/4 width */}
+          <div className="lg:col-span-3 space-y-6">
+            {/* KPI Cards */}
+            <KPICardSection 
+              filteredResults={filteredResults}
+              averageScore={averageScore}
+              timeRange={timeRange}
+            />
+            
+            {/* Quick Actions */}
+            <QuickActions />
+            
+            {/* Forms List */}
+            <Card className="p-6">
+              <Tabs defaultValue="recent" className="w-full">
+                <TabsList className="mb-4">
+                  <TabsTrigger value="recent">Recent Forms</TabsTrigger>
+                  <TabsTrigger value="drafts">Drafts</TabsTrigger>
+                  <TabsTrigger value="completed">Completed</TabsTrigger>
+                </TabsList>
+                
+                <TabsContent value="recent" className="w-full">
+                  <FormsList filteredResults={filteredResults} />
+                </TabsContent>
+                
+                <TabsContent value="drafts">
+                  <FormsList filteredResults={filteredResults.slice(0, 5)} />
+                </TabsContent>
+                
+                <TabsContent value="completed">
+                  <FormsList filteredResults={filteredResults.filter(r => r.percentageScore > 50)} />
+                </TabsContent>
+              </Tabs>
+            </Card>
+          </div>
+          
+          {/* Sidebar - 1/4 width */}
+          <div className="lg:col-span-1 space-y-6">
+            <Card className="p-6">
+              <h3 className="text-lg font-medium mb-4">Risk Distribution</h3>
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <span>Low Risk</span>
+                  <span className="font-medium text-medical-success">{riskLevelCounts.low}</span>
+                </div>
+                <div className="w-full bg-secondary rounded-full h-2">
+                  <div 
+                    className="bg-medical-success h-2 rounded-full" 
+                    style={{ width: `${(riskLevelCounts.low / filteredResults.length) * 100}%` }} 
+                  />
+                </div>
+                
+                <div className="flex justify-between items-center">
+                  <span>Moderate Risk</span>
+                  <span className="font-medium text-medical-warning">{riskLevelCounts.moderate}</span>
+                </div>
+                <div className="w-full bg-secondary rounded-full h-2">
+                  <div 
+                    className="bg-medical-warning h-2 rounded-full" 
+                    style={{ width: `${(riskLevelCounts.moderate / filteredResults.length) * 100}%` }} 
+                  />
+                </div>
+                
+                <div className="flex justify-between items-center">
+                  <span>High Risk</span>
+                  <span className="font-medium text-medical-danger">{riskLevelCounts.high}</span>
+                </div>
+                <div className="w-full bg-secondary rounded-full h-2">
+                  <div 
+                    className="bg-medical-danger h-2 rounded-full" 
+                    style={{ width: `${(riskLevelCounts.high / filteredResults.length) * 100}%` }} 
+                  />
+                </div>
+              </div>
+            </Card>
+            
+            <Card className="p-6">
+              <h3 className="text-lg font-medium mb-4">Recent Activity</h3>
+              <div className="space-y-4">
+                {filteredResults.slice(0, 5).map((result, idx) => (
+                  <div key={idx} className="flex items-start gap-3 pb-3 border-b last:border-0">
+                    <div className={`w-2 h-2 mt-2 rounded-full ${
+                      result.riskLevel === 'low' ? 'bg-medical-success' : 
+                      result.riskLevel === 'moderate' ? 'bg-medical-warning' : 
+                      'bg-medical-danger'
+                    }`} />
+                    <div>
+                      <p className="text-sm">Assessment #{idx + 1} completed</p>
+                      <p className="text-xs text-muted-foreground">
+                        {result.completedAt.toLocaleDateString()}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Card>
+          </div>
+        </div>
       </div>
     </div>
   );
