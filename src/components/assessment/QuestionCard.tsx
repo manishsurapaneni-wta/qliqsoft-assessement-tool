@@ -13,6 +13,7 @@ import { QuestionFooter } from './QuestionFooter';
 import { useQuestionRenderer } from '@/hooks/useQuestionRenderer';
 import { useAnimationVariants } from '@/hooks/useAnimationVariants';
 import { Question } from '@/utils/types/assessment';
+import { QuestionCardProgress } from './QuestionCardProgress';
 
 export interface QuestionCardProps {
   question: Question;
@@ -51,7 +52,8 @@ export const QuestionCard = ({
       className="w-full max-w-2xl mx-auto"
     >
       <Card className="border shadow-md overflow-hidden">
-        <div className="h-1.5 bg-gradient-to-r from-primary/70 via-primary to-primary/70 w-full"></div>
+        <QuestionCardProgress />
+        
         <CardHeader>
           <QuestionHeader 
             text={question.text}
