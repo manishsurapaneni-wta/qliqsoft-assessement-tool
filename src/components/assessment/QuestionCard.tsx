@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
@@ -11,8 +12,7 @@ import { QuestionHeader } from './QuestionHeader';
 import { QuestionFooter } from './QuestionFooter';
 import { useQuestionRenderer } from '@/hooks/useQuestionRenderer';
 import { useAnimationVariants } from '@/hooks/useAnimationVariants';
-
-export type QuestionType = 'multiple_choice' | 'scale' | 'boolean';
+import { QuestionType } from '@/components/form-builder/types';
 
 export interface Option {
   value: string;

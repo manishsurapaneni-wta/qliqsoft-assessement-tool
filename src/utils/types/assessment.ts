@@ -5,7 +5,7 @@ export interface Question {
   id: string;
   text: string;
   description?: string;
-  type: "multiple_choice" | "scale" | "boolean";
+  type: "multiple_choice" | "scale" | "boolean" | "text" | "date";
   options?: Option[];
   minValue?: number;
   maxValue?: number;

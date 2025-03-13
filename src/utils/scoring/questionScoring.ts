@@ -47,6 +47,11 @@ export const getQuestionScore = (
       };
     }
     
+    case "text":
+    case "date":
+      // Text and date questions typically don't have scoring
+      return { score: 0, maxScore: 0 };
+    
     default:
       return { score: 0, maxScore: 0 };
   }

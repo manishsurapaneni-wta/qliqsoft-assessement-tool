@@ -5,6 +5,7 @@ import { BooleanQuestion } from '@/components/assessment/questionTypes/BooleanQu
 import { TextQuestion } from '@/components/assessment/questionTypes/TextQuestion';
 import { DateQuestion } from '@/components/assessment/questionTypes/DateQuestion';
 import { Question } from '@/components/assessment/QuestionCard';
+import { QuestionType } from '@/components/form-builder/types'; // Import correct QuestionType definition
 
 /**
  * Custom hook to determine which question component to render based on question type
