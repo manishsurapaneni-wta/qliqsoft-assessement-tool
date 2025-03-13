@@ -67,9 +67,13 @@ const Navbar = () => {
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link
           to="/"
-          className="text-xl font-bold flex items-center gap-2 transition-opacity hover:opacity-80"
+          className="flex items-center gap-2 transition-opacity hover:opacity-80"
         >
-          <span className="text-primary">Med</span>Score
+          <img 
+            src="/logo.png" 
+            alt="MedScore Logo" 
+            className="h-8 w-auto" 
+          />
         </Link>
 
         {/* Desktop Nav */}
