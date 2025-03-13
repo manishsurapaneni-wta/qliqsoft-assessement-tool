@@ -36,6 +36,7 @@ const Assessment = () => {
             questions={sampleQuestions}
             visible={showSidePanel}
             onClose={() => setShowSidePanel(false)}
+            onJumpToQuestion={() => {}}
           />
         </div>
       )}
