@@ -1,11 +1,12 @@
 
+
 // Contains all the types and interfaces related to assessments and scoring
 
 export interface Question {
   id: string;
   text: string;
   description?: string;
-  type: "multiple_choice" | "scale" | "boolean" | "text" | "date";
+  type: "multiple_choice" | "scale" | "boolean" | "text" | "date" | "heading";
   options?: Option[];
   minValue?: number;
   maxValue?: number;
@@ -43,3 +44,4 @@ export interface AssessmentResult {
   riskLevel: "low" | "moderate" | "high";
   completedAt: Date;
 }
+

@@ -12,25 +12,9 @@ import { QuestionHeader } from './QuestionHeader';
 import { QuestionFooter } from './QuestionFooter';
 import { useQuestionRenderer } from '@/hooks/useQuestionRenderer';
 import { useAnimationVariants } from '@/hooks/useAnimationVariants';
-import { QuestionType } from '@/components/form-builder/types';
+import { Question } from '@/utils/types/assessment';
 
-export interface Option {
-  value: string;
-  label: string;
-  score: number;
-}
-
-export interface Question {
-  id: string;
-  text: string;
-  description?: string;
-  type: QuestionType;
-  options?: Option[];
-  minValue?: number;
-  maxValue?: number;
-}
-
-interface QuestionCardProps {
+export interface QuestionCardProps {
   question: Question;
   currentIndex: number;
   totalQuestions: number;

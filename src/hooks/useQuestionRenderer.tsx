@@ -4,8 +4,7 @@ import { ScaleQuestion } from '@/components/assessment/questionTypes/ScaleQuesti
 import { BooleanQuestion } from '@/components/assessment/questionTypes/BooleanQuestion';
 import { TextQuestion } from '@/components/assessment/questionTypes/TextQuestion';
 import { DateQuestion } from '@/components/assessment/questionTypes/DateQuestion';
-import { Question } from '@/components/assessment/QuestionCard';
-import { QuestionType } from '@/components/form-builder/types'; // Import correct QuestionType definition
+import { Question } from '@/utils/types/assessment';
 
 /**
  * Custom hook to determine which question component to render based on question type
@@ -59,6 +58,10 @@ export const useQuestionRenderer = () => {
             onChange={onChange}
           />
         );
+        
+      case 'heading':
+        // For heading type, just render the text without any input
+        return <p className="text-muted-foreground">This is a section heading (no input required)</p>;
         
       default:
         return <p>Unsupported question type</p>;

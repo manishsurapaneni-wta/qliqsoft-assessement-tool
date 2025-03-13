@@ -1,4 +1,5 @@
 
+
 import { Question } from "../types/assessment";
 
 /**
@@ -49,10 +50,12 @@ export const getQuestionScore = (
     
     case "text":
     case "date":
-      // Text and date questions typically don't have scoring
+    case "heading":
+      // Text, date, and heading questions typically don't have scoring
       return { score: 0, maxScore: 0 };
     
     default:
       return { score: 0, maxScore: 0 };
   }
 };
+
