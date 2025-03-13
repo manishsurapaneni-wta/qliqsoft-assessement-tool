@@ -3,13 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { FormBuilderContainer } from "@/components/form-builder/FormBuilderContainer";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { ChevronRight, Home } from "lucide-react";
+import Navbar from "@/components/layout/Navbar";
 
 const FormBuilder = () => {
   const navigate = useNavigate();
   
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto py-6 space-y-6">
+      <Navbar />
+      
+      <div className="container mx-auto py-6 pt-24 space-y-6">
         <div className="flex flex-col gap-4">
           <Breadcrumb>
             <BreadcrumbList>

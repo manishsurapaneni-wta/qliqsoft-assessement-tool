@@ -10,6 +10,7 @@ import { QuestionsList } from "@/components/form-details/QuestionsList";
 import { FormDetailsActionBar } from "@/components/form-details/FormDetailsActionBar";
 import { toast } from "sonner";
 import { useFormDetails } from "@/hooks/useFormDetails";
+import Navbar from "@/components/layout/Navbar";
 
 const FormDetails = () => {
   const { formId } = useParams<{ formId: string }>();
@@ -45,7 +46,8 @@ const FormDetails = () => {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background">
-        <div className="container mx-auto py-6 space-y-6">
+        <Navbar />
+        <div className="container mx-auto py-6 pt-24 space-y-6">
           <FormDetailsBreadcrumb formName="Loading..." />
           <div className="animate-pulse space-y-4">
             <div className="h-8 bg-muted rounded w-1/3"></div>
@@ -61,7 +63,8 @@ const FormDetails = () => {
   if (!form) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center space-y-4">
+        <Navbar />
+        <div className="text-center space-y-4 pt-24">
           <h2 className="text-2xl font-bold">Form Not Found</h2>
           <p className="text-muted-foreground">The requested form could not be found.</p>
           <button 
@@ -77,7 +80,8 @@ const FormDetails = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto py-6 space-y-6">
+      <Navbar />
+      <div className="container mx-auto py-6 pt-24 space-y-6">
         <FormDetailsBreadcrumb formName={form.title} />
         
         <FormDetailsHeader 
