@@ -35,7 +35,7 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 199 89% 48%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 222.2 84% 4.9%;
@@ -131,7 +131,7 @@
   }
   
   .assessment-option {
-    @apply flex items-center space-x-2 p-3 rounded-md border border-border bg-white hover:bg-secondary transition-colors cursor-pointer;
+    @apply flex items-center space-x-2 p-4 rounded-lg border border-border bg-card hover:border-primary/40 hover:bg-primary/5 transition-all duration-200 cursor-pointer;
   }
   
   .assessment-option.selected {
