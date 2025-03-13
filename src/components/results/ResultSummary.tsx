@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
 import { CheckCircle, AlertTriangle } from "lucide-react";
 import { AssessmentResult, ScoreBreakdown } from "@/utils/scoring";
+import RecommendationCard from "./RecommendationCard";
 
 interface ResultSummaryProps {
   result: AssessmentResult;
@@ -87,17 +88,7 @@ export const ResultSummary = ({ result, chartData }: ResultSummaryProps) => {
               }
               
               {/* Recommendation based on overall score */}
-              <div className="p-3 bg-primary/10 rounded-lg">
-                <div className="font-medium text-primary">Recommendation</div>
-                <p className="text-sm mt-1">
-                  {result.percentageScore >= 70 
-                    ? "Maintain your current health practices and schedule regular check-ups."
-                    : result.percentageScore >= 40
-                    ? "Consider discussing these results with a healthcare provider during your next visit."
-                    : "We recommend consulting with a healthcare provider to discuss these results soon."
-                  }
-                </p>
-              </div>
+              <RecommendationCard percentageScore={result.percentageScore} />
             </div>
           </div>
         </div>

@@ -1,35 +1,10 @@
 
-import { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { CheckCircle, AlertTriangle } from "lucide-react";
 import { AssessmentResult } from "@/utils/scoring";
-
-// Risk level colors
-const riskColors = {
-  low: "text-medical-success",
-  moderate: "text-medical-warning",
-  high: "text-medical-danger",
-};
-
-const riskBgColors = {
-  low: "bg-medical-success/10",
-  moderate: "bg-medical-warning/10",
-  high: "bg-medical-danger/10",
-};
-
-const riskLabels = {
-  low: "Low Risk",
-  moderate: "Moderate Risk",
-  high: "High Risk",
-};
-
-const riskIcons: Record<string, ReactNode> = {
-  low: <CheckCircle className="h-5 w-5 text-medical-success" />,
-  moderate: <AlertTriangle className="h-5 w-5 text-medical-warning" />,
-  high: <AlertTriangle className="h-5 w-5 text-medical-danger" />,
-};
+import { riskColors } from "@/utils/charts";
+import RiskLevelBadge from "./RiskLevelBadge";
 
 interface OverallScoreProps {
   result: AssessmentResult;
@@ -83,12 +58,7 @@ export const OverallScore = ({ result }: OverallScoreProps) => {
           
           <div className="flex-1">
             <div className="flex items-center mb-4">
-              <div 
-                className={`${riskBgColors[result.riskLevel]} ${riskColors[result.riskLevel]} px-3 py-1 rounded-full flex items-center space-x-1 text-sm font-medium`}
-              >
-                {riskIcons[result.riskLevel]}
-                <span>{riskLabels[result.riskLevel]}</span>
-              </div>
+              <RiskLevelBadge riskLevel={result.riskLevel} />
             </div>
             
             <div className="space-y-2">
