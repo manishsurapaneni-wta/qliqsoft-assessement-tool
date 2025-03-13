@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { AssessmentResult } from "@/utils/scoring";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { useNavigate } from "react-router-dom";
 
 interface FormsListProps {
   filteredResults: AssessmentResult[];
@@ -22,6 +23,7 @@ interface FormsListProps {
 
 export const FormsList = ({ filteredResults }: FormsListProps) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
   const getRiskBadgeClassname = (riskLevel: string) => {
     switch (riskLevel) {
@@ -97,7 +99,9 @@ export const FormsList = ({ filteredResults }: FormsListProps) => {
                       <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>
+                        <DropdownMenuItem 
+                          onClick={() => navigate(`/form-details/${index}`)}
+                        >
                           <Eye className="mr-2 h-4 w-4" />
                           <span>View</span>
                         </DropdownMenuItem>

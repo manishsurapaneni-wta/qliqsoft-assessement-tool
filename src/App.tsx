@@ -9,6 +9,7 @@ import Assessment from "./pages/Assessment";
 import Results from "./pages/Results";
 import Dashboard from "./pages/Dashboard";
 import FormBuilder from "./pages/FormBuilder";
+import FormDetails from "./pages/FormDetails";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/results" element={<Results />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/form-builder" element={<FormBuilder />} />
+          <Route path="/form-details/:formId" element={<FormDetails />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
