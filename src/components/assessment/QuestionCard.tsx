@@ -10,9 +10,8 @@ import {
 
 import { QuestionHeader } from './QuestionHeader';
 import { QuestionFooter } from './QuestionFooter';
-import { MultipleChoiceQuestion } from './questionTypes/MultipleChoiceQuestion';
-import { ScaleQuestion } from './questionTypes/ScaleQuestion';
-import { BooleanQuestion } from './questionTypes/BooleanQuestion';
+import { useQuestionRenderer } from '@/hooks/useQuestionRenderer';
+import { useAnimationVariants } from '@/hooks/useAnimationVariants';
 
 export type QuestionType = 'multiple_choice' | 'scale' | 'boolean';
 
@@ -56,62 +55,8 @@ export const QuestionCard = ({
   isLast
 }: QuestionCardProps) => {
   const [animationComplete, setAnimationComplete] = useState(false);
-  
-  // Render different question types
-  const renderQuestionContent = () => {
-    switch (question.type) {
-      case 'multiple_choice':
-        return (
-          <MultipleChoiceQuestion 
-            options={question.options}
-            value={value}
-            onChange={onChange}
-          />
-        );
-        
-      case 'scale':
-        return (
-          <ScaleQuestion
-            minValue={question.minValue}
-            maxValue={question.maxValue}
-            value={value}
-            onChange={onChange}
-          />
-        );
-        
-      case 'boolean':
-        return (
-          <BooleanQuestion
-            value={value}
-            onChange={onChange}
-          />
-        );
-        
-      default:
-        return <p>Unsupported question type</p>;
-    }
-  };
-
-  // Animation variants
-  const variants = {
-    hidden: { opacity: 0, x: 20 },
-    visible: { 
-      opacity: 1, 
-      x: 0,
-      transition: { 
-        duration: 0.4,
-        ease: [0.25, 0.1, 0.25, 1]
-      }
-    },
-    exit: { 
-      opacity: 0, 
-      x: -20,
-      transition: { 
-        duration: 0.3,
-        ease: [0.25, 0.1, 0.25, 1]
-      }
-    }
-  };
+  const { renderQuestionContent } = useQuestionRenderer();
+  const { variants } = useAnimationVariants();
 
   return (
     <motion.div
@@ -132,7 +77,7 @@ export const QuestionCard = ({
         </CardHeader>
         
         <CardContent>
-          {renderQuestionContent()}
+          {renderQuestionContent(question, value, onChange)}
         </CardContent>
         
         <CardFooter>

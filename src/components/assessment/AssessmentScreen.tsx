@@ -1,14 +1,12 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { QuestionCard } from "@/components/assessment/QuestionCard";
+import { QuestionCard, Question } from "@/components/assessment/QuestionCard";
 import { AssessmentProgress } from "@/components/assessment/AssessmentProgress";
 import { 
-  AssessmentResponse, 
-  Question,
+  AssessmentResponse,
   calculateAssessmentResult
 } from "@/utils/scoring";
 import { useToast } from "@/components/ui/use-toast";
