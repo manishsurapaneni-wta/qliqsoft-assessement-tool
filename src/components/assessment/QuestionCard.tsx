@@ -232,5 +232,3 @@ export const QuestionCard = ({
     </motion.div>
   );
 };
-
-<lov-add-dependency>framer-motion@latest</lov-add-dependency>
