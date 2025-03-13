@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Option } from '@/components/assessment/QuestionCard';
+import { Option } from '@/utils/types/assessment';
 
 interface MultipleChoiceQuestionProps {
   options?: Option[];

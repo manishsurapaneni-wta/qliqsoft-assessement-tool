@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { X, CheckCircle2, Circle, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Question } from "@/components/assessment/QuestionCard";
+import { Question } from "@/utils/types/assessment";
 
 interface SidePanelProps {
   questions: Question[];

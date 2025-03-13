@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { ArrowLeft, List, Save, Timer } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { QuestionCard, Question } from "@/components/assessment/QuestionCard";
+import { QuestionCard } from "@/components/assessment/QuestionCard";
 import { AssessmentProgress } from "@/components/assessment/AssessmentProgress";
 import { 
+  Question,
   AssessmentResponse,
   calculateAssessmentResult
 } from "@/utils/scoring";
