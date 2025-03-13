@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import Navbar from "@/components/layout/Navbar";
 import { AssessmentResult } from "@/utils/scoring";
 import { prepareChartData } from "@/utils/charts";
@@ -64,24 +65,24 @@ const Results = () => {
       <div className="container mx-auto px-4 py-8 pt-24 flex-1">
         <ResultsContainer>
           {/* Header */}
-          <div variants={itemVariants}>
+          <motion.div variants={itemVariants}>
             <ResultsHeader completedAt={result.completedAt} />
-          </div>
+          </motion.div>
           
           {/* Overall Score */}
-          <div variants={itemVariants}>
+          <motion.div variants={itemVariants}>
             <OverallScore result={result} />
-          </div>
+          </motion.div>
           
           {/* Detailed Results */}
-          <div variants={itemVariants}>
+          <motion.div variants={itemVariants}>
             <ResultsTabs result={result} chartData={chartData} />
-          </div>
+          </motion.div>
           
           {/* Action Buttons */}
-          <div variants={itemVariants}>
+          <motion.div variants={itemVariants}>
             <ResultsFooter />
-          </div>
+          </motion.div>
         </ResultsContainer>
       </div>
     </div>
