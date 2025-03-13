@@ -70,9 +70,9 @@ const Navbar = () => {
           className="flex items-center gap-2 transition-opacity hover:opacity-80"
         >
           <img 
-            src="/logo.png" 
-            alt="MedScore Logo" 
-            className="h-8 w-auto" 
+            src="/lovable-uploads/386e85d5-00ba-4c9f-b532-164661ff68f8.png" 
+            alt="Qliqsoft Logo" 
+            className="h-10 w-auto" 
           />
         </Link>
 
