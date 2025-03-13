@@ -12,10 +12,17 @@ import { QuestionType } from "@/components/form-builder/types";
 interface QuestionTypeIconProps {
   type: QuestionType;
   className?: string;
+  size?: "sm" | "md" | "lg";
 }
 
-export function QuestionTypeIcon({ type, className }: QuestionTypeIconProps) {
-  const iconClass = `h-4 w-4 ${className || ""}`;
+export function QuestionTypeIcon({ type, className, size = "md" }: QuestionTypeIconProps) {
+  const sizeMap = {
+    sm: "h-3 w-3",
+    md: "h-4 w-4",
+    lg: "h-5 w-5"
+  };
+  
+  const iconClass = `${sizeMap[size]} ${className || ""}`;
   
   switch (type) {
     case "multiple_choice":

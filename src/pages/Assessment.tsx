@@ -3,10 +3,12 @@ import { useState, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
 import { IntroductionScreen } from "@/components/assessment/IntroductionScreen";
 import { AssessmentScreen } from "@/components/assessment/AssessmentScreen";
+import { SidePanel } from "@/components/assessment/SidePanel";
 import { sampleQuestions } from "@/utils/scoring";
 
 const Assessment = () => {
   const [assessmentStarted, setAssessmentStarted] = useState(false);
+  const [showSidePanel, setShowSidePanel] = useState(false);
   
   // Reset to top of page when component mounts
   useEffect(() => {
@@ -24,7 +26,18 @@ const Assessment = () => {
       {!assessmentStarted ? (
         <IntroductionScreen onStartAssessment={startAssessment} />
       ) : (
-        <AssessmentScreen questions={sampleQuestions} />
+        <div className="flex flex-1 relative">
+          <AssessmentScreen 
+            questions={sampleQuestions} 
+            onToggleSidePanel={() => setShowSidePanel(prev => !prev)}
+            showSidePanel={showSidePanel}
+          />
+          <SidePanel 
+            questions={sampleQuestions}
+            visible={showSidePanel}
+            onClose={() => setShowSidePanel(false)}
+          />
+        </div>
       )}
     </div>
   );

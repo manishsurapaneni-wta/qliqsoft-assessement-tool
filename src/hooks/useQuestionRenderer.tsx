@@ -2,6 +2,8 @@
 import { MultipleChoiceQuestion } from '@/components/assessment/questionTypes/MultipleChoiceQuestion';
 import { ScaleQuestion } from '@/components/assessment/questionTypes/ScaleQuestion';
 import { BooleanQuestion } from '@/components/assessment/questionTypes/BooleanQuestion';
+import { TextQuestion } from '@/components/assessment/questionTypes/TextQuestion';
+import { DateQuestion } from '@/components/assessment/questionTypes/DateQuestion';
 import { Question } from '@/components/assessment/QuestionCard';
 
 /**
@@ -36,6 +38,22 @@ export const useQuestionRenderer = () => {
       case 'boolean':
         return (
           <BooleanQuestion
+            value={value}
+            onChange={onChange}
+          />
+        );
+        
+      case 'text':
+        return (
+          <TextQuestion
+            value={value}
+            onChange={onChange}
+          />
+        );
+        
+      case 'date':
+        return (
+          <DateQuestion
             value={value}
             onChange={onChange}
           />
