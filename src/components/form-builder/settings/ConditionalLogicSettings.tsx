@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Question, Condition } from "../types";
 import { Switch } from "@/components/ui/switch";
@@ -129,7 +128,7 @@ export function ConditionalLogicSettings({ question, updateQuestion, allQuestion
     });
   };
 
-  const getOperatorOptions = (questionType: QuestionType) => {
+  const getOperatorOptions = (questionType: string) => {
     switch (questionType) {
       case "multiple_choice":
       case "boolean":

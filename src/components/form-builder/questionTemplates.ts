@@ -23,6 +23,7 @@ export const questionTemplates: QuestionTemplate[] = [
       conditionalLogic: {
         enabled: false,
         conditions: [],
+        showWhen: "all", // Adding the missing property
       },
     }),
   },
@@ -44,6 +45,7 @@ export const questionTemplates: QuestionTemplate[] = [
       conditionalLogic: {
         enabled: false,
         conditions: [],
+        showWhen: "all", // Adding the missing property
       },
     }),
   },
@@ -67,6 +69,7 @@ export const questionTemplates: QuestionTemplate[] = [
       conditionalLogic: {
         enabled: false,
         conditions: [],
+        showWhen: "all", // Adding the missing property
       },
     }),
   },
@@ -86,6 +89,7 @@ export const questionTemplates: QuestionTemplate[] = [
       conditionalLogic: {
         enabled: false,
         conditions: [],
+        showWhen: "all", // Adding the missing property
       },
     }),
   },
@@ -105,6 +109,7 @@ export const questionTemplates: QuestionTemplate[] = [
       conditionalLogic: {
         enabled: false,
         conditions: [],
+        showWhen: "all", // Adding the missing property
       },
     }),
   },
@@ -125,6 +130,7 @@ export const questionTemplates: QuestionTemplate[] = [
       conditionalLogic: {
         enabled: false,
         conditions: [],
+        showWhen: "all", // Adding the missing property
       },
     }),
   },

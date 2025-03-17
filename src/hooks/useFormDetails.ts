@@ -46,7 +46,8 @@ export function useFormDetails(formId?: string) {
               },
               conditionalLogic: {
                 enabled: false,
-                conditions: []
+                conditions: [],
+                showWhen: "all" // Adding the missing property
               }
             },
             {
@@ -63,7 +64,8 @@ export function useFormDetails(formId?: string) {
               },
               conditionalLogic: {
                 enabled: false,
-                conditions: []
+                conditions: [],
+                showWhen: "all" // Adding the missing property
               }
             },
             {
@@ -81,7 +83,8 @@ export function useFormDetails(formId?: string) {
               },
               conditionalLogic: {
                 enabled: false,
-                conditions: []
+                conditions: [],
+                showWhen: "all" // Adding the missing property
               }
             },
             {
@@ -96,7 +99,8 @@ export function useFormDetails(formId?: string) {
               },
               conditionalLogic: {
                 enabled: false,
-                conditions: []
+                conditions: [],
+                showWhen: "all" // Adding the missing property
               }
             },
             {
@@ -116,7 +120,8 @@ export function useFormDetails(formId?: string) {
               },
               conditionalLogic: {
                 enabled: false,
-                conditions: []
+                conditions: [],
+                showWhen: "all" // Adding the missing property
               }
             }
           ],
