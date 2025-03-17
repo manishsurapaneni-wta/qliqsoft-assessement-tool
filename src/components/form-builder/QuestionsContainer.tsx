@@ -1,29 +1,32 @@
 
-import { Question, Form } from "./types";
+import { Question } from "./types";
 import { QuestionBlock } from "./QuestionBlock";
 
 interface QuestionsContainerProps {
   questions: Question[];
+  allQuestions: Question[];
   moveQuestion: (dragIndex: number, hoverIndex: number) => void;
-  updateQuestion: (updatedQuestion: Question) => void;
-  deleteQuestion: (questionId: string) => void;
-  duplicateQuestion: (questionId: string) => void;
+  updateQuestion: (question: Question) => void;
+  deleteQuestion: (id: string) => void;
+  duplicateQuestion: (id: string) => void;
 }
 
-export function QuestionsContainer({ 
-  questions, 
-  moveQuestion, 
-  updateQuestion, 
-  deleteQuestion, 
-  duplicateQuestion 
+export function QuestionsContainer({
+  questions,
+  allQuestions,
+  moveQuestion,
+  updateQuestion,
+  deleteQuestion,
+  duplicateQuestion,
 }: QuestionsContainerProps) {
   return (
     <div className="space-y-4">
       {questions.map((question, index) => (
-        <QuestionBlock 
+        <QuestionBlock
           key={question.id}
           question={question}
           index={index}
+          allQuestions={allQuestions}
           moveQuestion={moveQuestion}
           updateQuestion={updateQuestion}
           deleteQuestion={deleteQuestion}

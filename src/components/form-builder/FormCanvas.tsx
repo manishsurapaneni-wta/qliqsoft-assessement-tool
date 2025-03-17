@@ -36,6 +36,7 @@ export function FormCanvas({ form, setForm }: FormCanvasProps) {
         ) : (
           <QuestionsContainer
             questions={form.questions}
+            allQuestions={form.questions}
             moveQuestion={moveQuestion}
             updateQuestion={updateQuestion}
             deleteQuestion={deleteQuestion}

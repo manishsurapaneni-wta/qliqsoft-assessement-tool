@@ -30,13 +30,16 @@ export interface Question {
   conditionalLogic?: {
     enabled: boolean;
     conditions: Condition[];
+    showWhen: "all" | "any"; // Show question when all conditions match or any condition matches
   };
+  parentQuestionIds?: string[]; // IDs of questions that this question depends on
 }
 
 export interface Condition {
   questionId: string;
-  operator: "equals" | "not_equals" | "greater_than" | "less_than";
+  operator: "equals" | "not_equals" | "greater_than" | "less_than" | "contains";
   value: string | number;
+  questionText?: string; // To display in the UI
 }
 
 export type FormStatus = "draft" | "published" | "archived";

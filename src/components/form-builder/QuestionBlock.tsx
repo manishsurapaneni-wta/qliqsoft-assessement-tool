@@ -9,6 +9,7 @@ import { QuestionBlockContent } from "./QuestionBlockContent";
 interface QuestionBlockProps {
   question: Question;
   index: number;
+  allQuestions: Question[];
   moveQuestion: (dragIndex: number, hoverIndex: number) => void;
   updateQuestion: (question: Question) => void;
   deleteQuestion: (id: string) => void;
@@ -18,6 +19,7 @@ interface QuestionBlockProps {
 export function QuestionBlock({ 
   question, 
   index, 
+  allQuestions,
   moveQuestion, 
   updateQuestion, 
   deleteQuestion, 
@@ -84,6 +86,7 @@ export function QuestionBlock({
           updateQuestion={updateQuestion}
           deleteQuestion={deleteQuestion}
           duplicateQuestion={duplicateQuestion}
+          allQuestions={allQuestions}
         />
       </CardHeader>
       
@@ -91,6 +94,7 @@ export function QuestionBlock({
         <QuestionBlockContent
           question={question}
           updateQuestion={updateQuestion}
+          allQuestions={allQuestions}
         />
       </CardContent>
     </Card>

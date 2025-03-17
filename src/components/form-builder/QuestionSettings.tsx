@@ -11,9 +11,10 @@ import { ConditionalLogicSettings } from "./settings/ConditionalLogicSettings";
 interface QuestionSettingsProps {
   question: Question;
   updateQuestion: (question: Question) => void;
+  allQuestions: Question[];
 }
 
-export function QuestionSettings({ question, updateQuestion }: QuestionSettingsProps) {
+export function QuestionSettings({ question, updateQuestion, allQuestions }: QuestionSettingsProps) {
   const [activeTab, setActiveTab] = useState("options");
   
   return (
@@ -46,7 +47,11 @@ export function QuestionSettings({ question, updateQuestion }: QuestionSettingsP
         <Separator />
         
         {/* Conditional Logic Section */}
-        <ConditionalLogicSettings question={question} updateQuestion={updateQuestion} />
+        <ConditionalLogicSettings 
+          question={question} 
+          updateQuestion={updateQuestion}
+          allQuestions={allQuestions}
+        />
       </TabsContent>
     </Tabs>
   );
